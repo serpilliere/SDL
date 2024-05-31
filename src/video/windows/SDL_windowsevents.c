@@ -433,6 +433,7 @@ WIN_KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
     if (nCode < 0 || nCode != HC_ACTION) {
         return CallNextHookEx(NULL, nCode, wParam, lParam);
     }
+    printf("key: %d %d\n", hookData->vkCode, hookData->scanCode);
 
     switch (hookData->vkCode) {
     case VK_LWIN:

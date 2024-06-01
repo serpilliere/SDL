@@ -162,6 +162,7 @@ static SDL_Scancode WindowsScanCodeToSDLScanCode(LPARAM lParam, WPARAM wParam, S
     Uint16 keyFlags = HIWORD(lParam);
     Uint16 scanCode = LOBYTE(keyFlags);
 
+    printf("scancode to sdl %d\n", scanCode);
     /* On-Screen Keyboard can send wrong scan codes with high-order bit set (key break code).
      * Strip high-order bit. */
     scanCode &= ~0x80;

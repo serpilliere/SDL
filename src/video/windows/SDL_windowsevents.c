@@ -580,7 +580,7 @@ WIN_KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 	   wParam,
 	   hookData->scanCode,
 	   hookData->flags,
-	   hookData->vkCode,
+	   hookData->vkCode
 	   );
     switch (hookData->vkCode) {
     case VK_LWIN:

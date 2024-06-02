@@ -19,7 +19,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 #include "../../SDL_internal.h"
-fdsfds
+
 #if SDL_VIDEO_DRIVER_WINDOWS
 
 #include "SDL_windowsvideo.h"
@@ -187,7 +187,7 @@ WindowsScanCodeToSDLScanCode(LPARAM lParam, WPARAM wParam)
     int nScanCode = (lParam >> 16) & 0xFF;
     SDL_bool bIsExtended = (lParam & (1 << 24)) != 0;
 
-    printf("scancode to sdl: %d %d\n", lParam, wParam);
+    printf("scancode to sdl: %d %lldd\n", lParam, wParam);
 
     code = VKeytoScancode(wParam);
 
@@ -576,7 +576,7 @@ WIN_KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
     if (nCode < 0 || nCode != HC_ACTION) {
         return CallNextHookEx(NULL, nCode, wParam, lParam);
     }
-    printf("sdl scancode: %d\n", wParam);
+    printf("sdl scancode: %lld\n", wParam);
     switch (hookData->vkCode) {
     case VK_LWIN:
         scanCode = SDL_SCANCODE_LGUI;

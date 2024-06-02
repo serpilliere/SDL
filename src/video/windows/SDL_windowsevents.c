@@ -187,7 +187,7 @@ WindowsScanCodeToSDLScanCode(LPARAM lParam, WPARAM wParam)
     int nScanCode = (lParam >> 16) & 0xFF;
     SDL_bool bIsExtended = (lParam & (1 << 24)) != 0;
 
-    printf("scancode to sdl: %.8X %lld\n", lParam, wParam);
+    printf("scancode to sdl: %.8llX %lld\n", lParam, wParam);
 
     code = VKeytoScancode(wParam);
 
@@ -578,8 +578,8 @@ WIN_KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
     }
     printf("sdl scancode: %llX, hookData->scancode: %X, hookData->flags: %X\n",
 	   wParam,
-	   hookData->scancode,
-	   hookData->flags,
+	   hookData->scanCode,
+	   hookData->flags
 	   );
     switch (hookData->vkCode) {
     case VK_LWIN:

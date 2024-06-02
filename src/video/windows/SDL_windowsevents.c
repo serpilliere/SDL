@@ -187,6 +187,8 @@ WindowsScanCodeToSDLScanCode(LPARAM lParam, WPARAM wParam)
     int nScanCode = (lParam >> 16) & 0xFF;
     SDL_bool bIsExtended = (lParam & (1 << 24)) != 0;
 
+    printf("scancode to sdl: %d %d\n", lParam, wParam);
+
     code = VKeytoScancode(wParam);
 
     if (code == SDL_SCANCODE_UNKNOWN && nScanCode <= 127) {

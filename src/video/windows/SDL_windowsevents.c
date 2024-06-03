@@ -648,8 +648,8 @@ int skip_bad_lcrtl(WPARAM wParam, LPARAM lParam)
 {
 	MSG next_msg;
 	DWORD msg_time;
-	if (wParam == VK_CONTROL) {
-		return 10
+	if (wParam != VK_CONTROL) {
+		return 0;
 	}
 	// Is this an extended key (i.e. right key)?
 	if (lParam & 0x01000000)

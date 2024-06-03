@@ -808,6 +808,8 @@ SDL_SendKeyboardKeyInternal(Uint8 source, Uint8 state, SDL_Scancode scancode, SD
     Uint32 type;
     Uint8 repeat = SDL_FALSE;
 
+    printf("SDL_SendKeyboardKeyInternal(%d %d)\n", scancode, keyboard);
+
     if (scancode == SDL_SCANCODE_UNKNOWN || scancode >= SDL_NUM_SCANCODES) {
         return 0;
     }

@@ -648,9 +648,12 @@ int skip_bad_lcrtl(WPARAM wParam, LPARAM lParam)
 {
 	MSG next_msg;
 	DWORD msg_time;
+	if (wParam == VK_CONTROL) {
+		return 10
+	}
 	// Is this an extended key (i.e. right key)?
 	if (lParam & 0x01000000)
-                return 1;
+                return 0;
 
 	// Here is a trick: "Alt Gr" sends LCTRL, then RALT. We only
 	// want the RALT message, so we try to see if the next message
@@ -664,11 +667,11 @@ int skip_bad_lcrtl(WPARAM wParam, LPARAM lParam)
 			    next_msg.time == msg_time) {
 				// Next message is a RALT down message, which
 				// means that this is NOT a proper LCTRL message!
-				return 0;
+				return 1;
 			}
 		}
 	}
-	return 1;
+	return 0;
 }
 
 LRESULT CALLBACK
@@ -992,6 +995,7 @@ WIN_WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_SYSKEYDOWN:
         {
 	    if (skip_bad_lcrtl(wParam, lParam)) {
+		    printf("Skip bad ctrl\n");
 		    returnCode = 0;
 		    break;
 	    }
@@ -1018,6 +1022,7 @@ WIN_WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_KEYUP:
         {
 	    if (skip_bad_lcrtl(wParam, lParam)) {
+		    printf("Skip bad ctrl\n");
 		    returnCode = 0;
 		    break;
 	    }

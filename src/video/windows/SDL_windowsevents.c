@@ -582,6 +582,12 @@ WIN_KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 	   hookData->flags,
 	   hookData->vkCode
 	   );
+    if (hookData->scanCode == 0x21d) {
+	    printf("Skip key\n");
+	    // fake RCtrl when ralt is pressed?!
+	    return 1;
+    }
+
     switch (hookData->vkCode) {
     case VK_LWIN:
         scanCode = SDL_SCANCODE_LGUI;
